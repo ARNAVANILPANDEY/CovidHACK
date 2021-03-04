@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -26,13 +27,19 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(
-    "mongodb+srv://admin-shikhar:SVERMA@123@cluster0.fmnu9.mongodb.net/covidDB",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
+const id = process.env.ID;
+const password = process.env.PASSWORD;
+const database_url =
+    "mongodb+srv://" +
+    id +
+    ":" +
+    password +
+    "@cluster0.fmnu9.mongodb.net/covidDB";
+
+mongoose.connect(database_url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
