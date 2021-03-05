@@ -1,1 +1,48 @@
-<%- include("partials/header") %> <%- include("partials/footer") %>
+<%- include("partials/header") %>
+<div class="card" style="width: 18rem">
+    <div class="card-body">
+        <h3 class="card-title">Your Info</h3>
+        <p class="card-text">Name: <%= user.name %></p>
+        <p class="card-text">Address: <%= user.address %></p>
+        <p class="card-text">Mobile Number: <%= user.mobile %></p>
+        <p class="card-text">Age: <%= user.age %></p>
+    </div>
+</div>
+<div class="card" style="width: 40rem">
+    <ul class="list-group list-group-flush">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col align-self-start"><b>Hospital Name</b></div>
+                <div class="col align-self-center">
+                    <b>Doses Count</b>
+                </div>
+                <div class="col align-self-end"><b>Patients in Queue</b></div>
+            </div>
+            <% hospitals.forEach(function(hospital){ %>
+            <div class="row justify-content-md-center">
+                <div class="col align-self-start"><%= hospital.name %></div>
+                <div class="col align-self-center">
+                    <%= hospital.dosesCount %>
+                </div>
+                <div class="col align-self-end"><%= hospital.queue %></div>
+            </div>
+            <% }) %>
+        </div>
+    </ul>
+</div>
+<% if(user.status === "Yet to be Vaccinated"){ %>
+<div class="card" style="width: 18rem">
+    <div class="card-body">
+        <h3 class="card-title">Status</h3>
+        <p class="card-text"><%= user.status %></p>
+    </div>
+</div>
+<button type="button" class="btn btn-primary btn-lg">Get Your Vaccine</button>
+<% } else{ %>
+<div class="card" style="width: 18rem">
+    <div class="card-body">
+        <h3 class="card-title">Status</h3>
+        <p class="card-text"><%= user.status %></p>
+    </div>
+</div>
+<% } %> <%- include("partials/footer") %>
