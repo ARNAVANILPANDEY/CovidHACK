@@ -37,7 +37,31 @@
         <p class="card-text"><%= user.status %></p>
     </div>
 </div>
-<button type="button" class="btn btn-primary btn-lg">Get Your Vaccine</button>
+<button type="button" class="btn btn-primary btn-lg" onclick="openForm()">
+    Get Your Vaccine
+</button>
+<div class="form-popup" id="myForm">
+    <form action="/vaccination" class="form-container" method="POST">
+        <h1>Get Appointment</h1>
+
+        <label for="email"><b>Select your nearest Hospital</b></label>
+        <select name="hospitals" id="hospitals">
+            <% hospitals.forEach(function(hospital){ %> 
+            <option value=<%= hospital.name %>><%= hospital.name %></option>
+             <% }) %>
+        </select>
+        <br><br>
+
+        <label for="psw"><b>Select Appointment Date</b></label>
+        <input type="date" id="date" name="appointment" required>
+        <br><br>
+
+        <button type="submit" class="btn">Book</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">
+            Cancel Booking
+        </button>
+    </form>
+</div>
 <% } else{ %>
 <div class="card" style="width: 18rem">
     <div class="card-body">
@@ -45,4 +69,18 @@
         <p class="card-text"><%= user.status %></p>
     </div>
 </div>
-<% } %> <%- include("partials/footer") %>
+<% } %> 
+
+<a class="btn btn-dark btn-sm" href="/logout" role="button">Log Out</a>
+
+<%- include("partials/footer") %>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>

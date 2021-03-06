@@ -49,8 +49,7 @@ const userSchema = new mongoose.Schema({
     address: String,
     mobile: Number,
     status: String,
-    age: Number,
-    timeFirst: String
+    age: Number
 });
 
 const adminSchema = new mongoose.Schema({
@@ -108,6 +107,11 @@ app.get("/register", function (req, res) {
     res.render("register");
 });
 
+app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
 app.get("/dashboard", function (req, res) {
     if (req.isAuthenticated()) {
         Hospital.find({}, function (err, results) {
@@ -123,7 +127,13 @@ app.get("/dashboard", function (req, res) {
 });
 
 app.get("/admin-dashboard", function (req, res) {
-    res.render("admin-dashboard");
+    Hospital.find({}, function (err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("admin-dashboard", { hospitals: results });
+        }
+    });
 });
 
 app.post("/register", function (req, res) {
@@ -134,8 +144,7 @@ app.post("/register", function (req, res) {
             address: req.body.address,
             mobile: req.body.mobile,
             status: "Yet to be Vaccinated",
-            age: req.body.age,
-            timeFirst: "N/A"
+            age: req.body.age
         },
         req.body.password,
         function (err, user) {
@@ -222,6 +231,62 @@ app.post("/hospital", function (req, res) {
     newHospital.save(function () {
         res.redirect("/hospital");
     });
+});
+
+app.post("/vaccination", function (req, res) {
+    const s =
+        "You appointment for vaccination is scheduled on " +
+        req.body.appointment +
+        " at " +
+        req.body.hospitals +
+        ".";
+    Hospital.findOneAndUpdate(
+        { name: req.body.hospitals },
+        { $inc: { queue: 1, dosesCount: -1 } },
+        function (err) {
+            if (err) {
+                console.log(err);
+            }
+        }
+    );
+    User.findOneAndUpdate(
+        { name: req.user.name },
+        { $set: { status: s } },
+        function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect("/dashboard");
+            }
+        }
+    );
+});
+
+app.post("/admin-order", function (req, res) {
+    const fromHospital = req.body.fromHospital;
+    const toHospital = req.body.toHospital;
+    const quantity = req.body.quantity;
+
+    Hospital.findOneAndUpdate(
+        { name: fromHospital },
+        { $inc: { dosesCount: -quantity } },
+        function (err) {
+            if (err) {
+                console.log(err);
+            }
+        }
+    );
+    Hospital.findOneAndUpdate(
+        { name: toHospital },
+        { $inc: { dosesCount: quantity } },
+        function (err) {
+            if (err) {
+                console.log(err);
+            }
+        }
+    );
+
+    res.redirect("/admin-dashboard");
 });
 
 app.listen(3000, function () {
