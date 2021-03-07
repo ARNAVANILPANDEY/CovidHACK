@@ -88,7 +88,40 @@ passport.deserializeUser(function (id, done) {
 });
 
 app.get("/", function (req, res) {
-    res.render("home");
+    // var length;
+    // var users;
+    // var notVaccinated;
+    Hospital.find({}, function (err, results) {
+        if (err) {
+            console.log(err);
+        } else {
+            const length = results.length;           
+            User.find({}, function (err, foundUsers) {
+                if (err) {
+                    console.log(err);
+                } else {
+                   const users = foundUsers.length;
+                   User.find({status: "Yet to be Vaccinated"}, function (err, founds) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        const notVaccinated = founds.length; 
+                        const vaccinatedUsers = users - notVaccinated;
+                        res.render("home", { hospitals: length, user: users, vaccinatedUser: vaccinatedUsers });                               
+                    }
+                });
+                }
+            });
+        }
+    });
+
+    
+
+    
+    // console.log(users, length);
+
+    // var vaccinatedUsers = users - notVaccinated;
+    // res.render("home", { hospitals: length, users: users, vaccinatedUsers: vaccinatedUsers });
 });
 
 app.get("/login", function (req, res) {
