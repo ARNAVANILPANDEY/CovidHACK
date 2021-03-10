@@ -199,7 +199,7 @@ body {
     background: #a4ebf3;
 }
 
-.navbar.scrolled {
+#main-navbar.scrolled {
     background: #ccf2f4;
     transition: background 500ms;
 }
@@ -266,4 +266,41 @@ body {
 
 .iframe {
     padding: 60px;
+}
+
+/* Dashboard-User */
+.dabba-three {
+    margin: 60px;
+}
+
+.dabba-one{
+    margin: 60px;
+    background-color: #ff7171;
+    border-radius: 10%;
+}
+
+.dabba-two {
+    margin: 60px;
+    margin-left: 70px;
+    background-color: #78c4d4;
+    border-radius: 10%;
+}
+
+table {
+    margin: 30px 200px;
+    /* table-layout: auto; */
+    /* width: 100%; */
+    padding: 0;
+}
+
+
+
+.button-logout{
+    position: absolute;
+    top: 11%;
+    right: 1%;
+}
+
+.bv{
+    margin-left: 23%;
 }

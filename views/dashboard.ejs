@@ -1,7 +1,8 @@
-<%- include("partials/header") %>
+    <%- include("partials/header") %>
+
 <div class="container row">
-<div class="card col-5" style="width: 18rem">
-    <div class="card-body">
+<div class="col-5" style="width: 18rem;">
+    <div class="card-body dabba-one">
         <h3 class="card-title">Your Info</h3>
         <p class="card-text">Name: <%= user.name %></p>
         <p class="card-text">Address: <%= user.address %></p>
@@ -11,13 +12,13 @@
 
 
 <% if(user.status === "Yet to be Vaccinated"){ %>
-<div class="card" style="width: 18rem">
+<div class="card dabba-two" style="width: 18rem">
     <div class="card-body">
         <h3 class="card-title">Status</h3>
         <p class="card-text"><%= user.status %></p>
     </div>
 </div>
-<button type="button" class="btn btn-primary btn-lg" onclick="openForm()">
+<button type="button" class="btn btn-primary btn-lg bv" onclick="openForm()">
     Get Your Vaccine
 </button>
 <div class="form-popup" id="myForm">
@@ -43,16 +44,18 @@
     </form>
 </div>
 <% } else{ %>
-<div class="card" style="width: 18rem">
+<div class="card dabba-two" style="width: 18rem">
     <div class="card-body">
         <h3 class="card-title">Status</h3>
         <p class="card-text"><%= user.status %></p>
     </div>
 </div>
 <% } %> 
+<br>
 </div>
 
-<div class="card col-7" style="width: 40rem">
+<!-- <div class="card col-6" style="width: 40rem">
+    <div class="dabba-three">
     <ul class="list-group list-group-flush">
         <div class="container">
             <div class="row justify-content-md-center">
@@ -74,9 +77,32 @@
         </div>
     </ul>
 </div>
+</div> -->
+
+<div class="col-7">
+    <table class=" table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" colspan="2">Hospital Name</th>
+                <th scope="col" colspan="2">Doses Count</th>
+                <th scope="col" colspan="2">Patients in Queue</th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <% hospitals.forEach(function(hospital){ %>
+                <tr class="bg-info">
+                    <td colspan="2"><%= hospital.name %></td>
+                    <td colspan="2"><%= hospital.dosesCount %></td>
+                    <td colspan="2"><%= hospital.queue %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
 
 
-<a class="btn btn-dark btn-sm" href="/logout" role="button">Log Out</a>
+
+<a class="btn btn-dark btn-sm button-logout" href="/logout" role="button">Log Out</a>
 </div>
 <%- include("partials/footer") %>
 

@@ -1,5 +1,5 @@
 <%- include("partials/header") %> 
-<div class="card" style="width: 40rem">
+<!-- <div class="card" style="width: 40rem">
     <ul class="list-group list-group-flush">
         <div class="container">
             <div class="row justify-content-md-center">
@@ -20,9 +20,29 @@
             <% }) %>
         </div>
     </ul>
+</div> -->
+<div class="col-7">
+    <table class=" table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" colspan="2">Hospital Name</th>
+                <th scope="col" colspan="2">Doses Count</th>
+                <th scope="col" colspan="2">Patients in Queue</th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <% hospitals.forEach(function(hospital){ %>
+                <tr class="bg-info">
+                    <td colspan="2"><%= hospital.name %></td>
+                    <td colspan="2"><%= hospital.dosesCount %></td>
+                    <td colspan="2"><%= hospital.queue %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </div>
 
-<button type="button" class="btn btn-primary btn-lg" onclick="openForm()">
+<button type="button" class="btn btn-primary btn-lg" style="position: absolute; top: 35%; right: 10%;" onclick="openForm()">
     Place a Vaccine Order
 </button>
 <div class="form-popup" id="myForm">
@@ -55,7 +75,7 @@
     </form>
 </div>
 
-<button type="button" class="btn btn-primary btn-lg" onclick="openRequest()">
+<button type="button" class="btn btn-primary btn-lg" style="position: absolute; top: 45%; right: 12.5%;" onclick="openRequest()">
     Request List
 </button>
 <div class="form-popup" id="request">
@@ -72,7 +92,7 @@
 </form>
 </div>
 
-<a class="btn btn-dark btn-sm" href="/admin-login" role="button">Log Out</a>
+<a class="btn btn-dark btn-sm button-logout" href="/admin-login" role="button">Log Out</a>
 
 <%- include("partials/footer") %>
 
