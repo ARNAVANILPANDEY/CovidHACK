@@ -3,6 +3,18 @@
     <head>
         <meta charset="UTF-8" />
         <title>CO-VAX</title>
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+
+          <!-- Font Awesome -->
+          <script
+          src="https://kit.fontawesome.com/68edf3d10d.js"
+          crossorigin="anonymous"
+      ></script>
+
+
         <!-- CSS Stylesheet -->
         <link
             rel="stylesheet"
@@ -31,7 +43,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light top-bar">
+            <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="main-navbar">
                 <a class="navbar-brand" href="/"><img class="nav-logo" src="images/logo.png" alt="CO-VAX"></a>
                 <button
                     class="navbar-toggler"
@@ -65,4 +77,13 @@
                 </div>
             </nav>
         </header>
+
+        <script>
+            $(function () {
+                $(document).scroll(function () {
+                var $nav = $("#main-navbar");
+                $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+                });
+            });
+        </script>
   

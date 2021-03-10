@@ -1,6 +1,6 @@
 body {
-    font-family: "Karla", sans-serif;
-    background-color: #d0d0ce;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f6f5f5;
     min-height: 100vh;
 }
 
@@ -195,6 +195,75 @@ body {
     border-radius: 30%;
 }
 
-.top-bar {
+#main-navbar {
     background: #a4ebf3;
+}
+
+.navbar.scrolled {
+    background: #ccf2f4;
+    transition: background 500ms;
+}
+
+/* .slider {
+    margin-top: 70px;
+} */
+
+.testimonial-image{
+    width: 100%;
+}
+
+/* Features Section  */
+#features {
+    position: relative;
+}
+.feature-box {
+    padding: 5%;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.icon {
+    color: #28527a;
+    margin-bottom: 1rem;
+    font-size: 5rem;
+}
+.icon:hover {
+    color: #8ac4d0;
+}
+
+.feature-box span {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Noticeboard  */
+#noticeboard {
+    background: #f0c38e;
+}
+
+.maps {
+    background-color: #11698e;
+    color: #fff;
+}
+
+.maps-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.big-heading {
+    margin: 150px 0px 30px 70px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3.5rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.iframe {
+    padding: 60px;
 }
