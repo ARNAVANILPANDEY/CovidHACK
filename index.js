@@ -31,11 +31,17 @@ const saltRounds = 10;
 
 const id = process.env.ID;
 const password = process.env.PASSWORD;
-const database_url =
-    "mongodb+srv://" +
-    id +
+// const database_url =
+//     "mongodb+srv://" +
+//     id +
+//     ":" +
+//     password +
+//     "@cluster0.fmnu9.mongodb.net/covidDB";
+
+const database_url = "mongodb+srv://" +
+"admin-shikhar" +
     ":" +
-    password +
+    "SVERMA@123" +
     "@cluster0.fmnu9.mongodb.net/covidDB";
 
 mongoose.connect(database_url, {
@@ -322,6 +328,12 @@ app.post("/admin-order", function (req, res) {
     res.redirect("/admin-dashboard");
 });
 
-app.listen(3000, function () {
-    console.log("Server running on port 3000");
-});
+// app.listen(3000, function () {
+//     console.log("Server running on port 3000");
+// });
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port);
