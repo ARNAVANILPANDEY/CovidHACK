@@ -121,6 +121,16 @@ app.get("/", function (req, res) {
     // res.render("home", { hospitals: length, users: users, vaccinatedUsers: vaccinatedUsers });
 });
 
+// Hospital.findOneAndUpdate(
+//     { name: "AIIMS, Delhi" },
+//     { $inc: { dosesCount: 50000 } },
+//     function (err) {
+//         if (err) {
+//             console.log(err);
+//         }
+//     }
+// );
+
 app.get("/login", function (req, res) {
     res.render("login");
 });
@@ -300,26 +310,29 @@ app.post("/admin-order", function (req, res) {
     const toHospital = req.body.toHospital;
     const quantity = req.body.quantity;
 
+    console.log(fromHospital, toHospital, quantity);
+
     Hospital.findOneAndUpdate(
         { name: fromHospital },
         { $inc: { dosesCount: -quantity } },
         function (err) {
             if (err) {
                 console.log(err);
+            } else {
+                Hospital.findOneAndUpdate(
+                    { name: toHospital },
+                    { $inc: { dosesCount: quantity } },
+                    function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.redirect("/admin-dashboard");
+                        }
+                    }
+                );
             }
         }
     );
-    Hospital.findOneAndUpdate(
-        { name: toHospital },
-        { $inc: { dosesCount: quantity } },
-        function (err) {
-            if (err) {
-                console.log(err);
-            }
-        }
-    );
-
-    res.redirect("/admin-dashboard");
 });
 
 // app.listen(3000, function () {
