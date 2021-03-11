@@ -279,20 +279,23 @@ app.post("/vaccination", function (req, res) {
         function (err) {
             if (err) {
                 console.log(err);
-            }
-        }
-    );
-    User.findOneAndUpdate(
-        { name: req.user.name },
-        { $set: { status: s } },
-        function (err) {
-            if (err) {
-                console.log(err);
             } else {
-                res.redirect("/dashboard");
+                console.log(req.user);
+                User.findOneAndUpdate(
+                    { username: req.user.username },
+                    { $set: { status: s } },
+                    function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            res.redirect("/dashboard");
+                        }
+                    }
+                );
             }
         }
     );
+    
 });
 
 app.post("/admin-order", function (req, res) {
