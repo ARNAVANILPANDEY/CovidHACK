@@ -31,12 +31,9 @@ const saltRounds = 10;
 
 const id = process.env.ID;
 const password = process.env.PASSWORD;
-const database_url =
-    "mongodb+srv://" +
-    "shikhar" +
-    ":" +
-    "SVERMA@123" +
-    "@cluster0.fmnu9.mongodb.net/covidDB";
+const database_url = "mongodb+srv://admin-shikhar:SVERMA@123@cluster0.fmnu9.mongodb.net/covidDB";
+
+// const database_url = "mongodb://localhost:27017/covidDB";
 
 mongoose.connect(database_url, {
     useNewUrlParser: true,
