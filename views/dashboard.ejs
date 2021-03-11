@@ -28,7 +28,7 @@
         <label for="email"><b>Select your nearest Hospital</b></label>
         <select name="hospitals" id="hospitals">
             <% hospitals.forEach(function(hospital){ %> 
-            <option value=<%= hospital.name %>><%= hospital.name %></option>
+            <option value="<%= hospital.name %>"><%= hospital.name %></option>
              <% }) %>
         </select>
         <br><br>

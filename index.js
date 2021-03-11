@@ -121,6 +121,7 @@ app.get("/", function (req, res) {
     // res.render("home", { hospitals: length, users: users, vaccinatedUsers: vaccinatedUsers });
 });
 
+
 // Hospital.findOneAndUpdate(
 //     { name: "AIIMS, Delhi" },
 //     { $inc: { dosesCount: 50000 } },
