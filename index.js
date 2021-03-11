@@ -33,9 +33,9 @@ const id = process.env.ID;
 const password = process.env.PASSWORD;
 const database_url =
     "mongodb+srv://" +
-    id +
+    "shikhar" +
     ":" +
-    password +
+    "SVERMA@123" +
     "@cluster0.fmnu9.mongodb.net/covidDB";
 
 mongoose.connect(database_url, {
